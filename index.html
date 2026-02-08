@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Dear Bouni 🤭</title>
+  <style>
+    :root {
+      --bg: #fff1f5;
+      --card: #ffffff;
+      --accent: #ff9bb3;
+      --accent2: #b8e1dd;
+      --text: #5b3b45;
+    }
+    * { box-sizing: border-box; font-family: 'Poppins', system-ui, sans-serif; }
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, var(--bg), #fef6e4);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+    header { text-align: center; padding: 2.5rem 1rem; }
+    header h1 { margin: 0; font-size: 2.4rem; }
+    header p { opacity: 0.85; }
+
+    .floating { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+    .float {
+      position: absolute;
+      font-size: 1.8rem;
+      animation: drift 12s linear infinite;
+    }
+    @keyframes drift {
+      from { transform: translateY(110vh); opacity: 0; }
+      10% { opacity: 1; }
+      to { transform: translateY(-20vh); opacity: 0; }
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 1rem;
+      display: grid;
+      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+    .card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 1.2rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+    .pill {
+      display: inline-block;
+      background: var(--accent2);
+      color: #2f6f68;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      margin: 0.2rem;
+      font-size: 0.85rem;
+    }
+    .hearts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+    }
+    .heart {
+      background: #ffe0ea;
+      border-radius: 14px;
+      padding: 1rem;
+      font-size: 1.6rem;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.15s;
+    }
+    .heart.done { background: #ffd1df; }
+    .heart:hover { transform: scale(1.05); }
+
+    button {
+      border: none;
+      background: var(--accent);
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    footer { text-align: center; padding: 2rem; opacity: 0.8; }
+  </style>
+</head>
+
+<body>
+  <div class="floating" id="floating"></div>
+
+  <header>
+    <h1>Hey Arie🌷</h1>
+    <p>A tiny page to lift up your day, cause i was bored, haha i'm so evil🥰 — just for you🤭🤗.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>A letter, cause i felt writing...hihi💌</h2>
+      <p>So...like happy birthday ig... the fck, why am i so nonchalant..... Ahem, HAPPPIEEEEE BIRTHDAEEEEEE MY SWEEET HG🥳🥳🎉🎊💝. I'm dropping my nonchalant facade for now, you are lucky. Ever since the day you texted, i felt the urge to reply back..ikr, you felt so cool, even now...tuffest bandi ever. You becane my favourite bouni yapper, very cliché.....sometimes you yap so fast, even the texts felt like Changbin rapping lol😭😭. So yea,the more you yap, the more my eyes hurt🥹🥹...so consider sending vn, i also have ears tf😹.</p>
+      <p>You’re funny without trying, annoying without effort🤡, and weird in a way that makes life less boring😊😊. You roast me, get roasted back, and then act offended like you didn’t start it...... Classic Bouni 😖😔🤞. Dont change. The world needs people like you to keep it interesting and slightly stressful. Haha😻</p>
+      <p>Let’s address the elephant in the room: yes, you’re short🤡..... But somehow your presence is still tall. You prove that confidence matters way more than inches. You stand your ground, speak your mind, and act like the main character and honestly? You kind of are💅💅..... Keep that energy forever.</p>
+      <p>You turn small convos into inside jokes and normal conversations into absolute nonsense in the best way possible.....You’re unpredictable, funny, and impossible to ignore. Fifteen is just another chapter in your ongoing comedy series😻🤞😭.</p>
+      <p>Some people feel like comfort... you feel like a cage, i love it tho....anyways happy birthday once again. Please always keep being annoying and short..... I love you twin😭😭😭</p>
+      <p>And oh my gawd, my fingers are swelling... i hope this is enough to get you smiling... or else i am throwing you off a cliff🥰🥰🤭 </p>
+      <span class="pill">shortie</span>
+      <span class="pill">annoying</span>
+      <span class="pill">tuff</span>
+    </section>
+
+    <section class="card">
+      <h2>Memory match, cause u have amnesia, issookke i know 💗</h2>
+      <p>Match the cute stuffs. Each match gives points ahhhhhhh✨</p>
+      <p><strong>Points:</strong> <span id="points">0</span></p>
+      <div class="hearts" id="memoryGrid"></div>
+      <p id="sweetText" style="font-weight:600"></p>
+      <button onclick="resetGame()">Restart 🧸</button>
+    </section>
+
+    <section class="card">
+      <h2>Chocolate Picker 🍫</h2>
+      <p>Pick a chocolate to reveal a sweet message. You deserve it.</p>
+      <div class="hearts">
+        <div class="heart choco" data-msg="You deserve me, i am so cool.">🍫</div>
+        <div class="heart choco" data-msg="Sometimes u r wromg, i am correct.">🍫</div>
+        <div class="heart choco" data-msg="Sometimes i am correct, u r wromg.">🍫</div>
+        <div class="heart choco" data-msg="I will never be as tuff as you.">🍫</div>
+      </div>
+      <p id="chocoMsg" style="font-weight:600"></p>
+    </section>
+  </main>
+
+  <footer>Alr have fun,twin 🌸</footer>
+ <audio id="bgMusic" loop preload="auto">
+  <source src="Jazz_Sneaking_Suspense_-_Background_Music_(HD)_128k.mp3" type="audio/mpeg">
+</audio>
+
+  <script>
+    const floating = document.getElementById('floating');
+    const emojis = ['❤️','💖','🧸','🍫','🌸','✨'];
+
+    function spawnFloat() {
+      const e = document.createElement('div');
+      e.className = 'float';
+      e.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      e.style.left = Math.random() * 100 + 'vw';
+      e.style.animationDuration = (8 + Math.random() * 8) + 's';
+      floating.appendChild(e);
+      setTimeout(() => e.remove(), 16000);
+    }
+    setInterval(spawnFloat, 900);
+
+    const icons = ['🧸','🍫','🌸','💖','✨','🍓'];
+    const grid = document.getElementById('memoryGrid');
+    const pointsEl = document.getElementById('points');
+    const sweetText = document.getElementById('sweetText');
+
+    let first = null, second = null, lock = false, points = 0, matched = 0;
+
+    function shuffle(a) {
+      return a.sort(() => Math.random() - 0.5);
+    }
+
+    function resetGame() {
+      grid.innerHTML = '';
+      points = 0;
+      matched = 0;
+      first = second = null;
+      lock = false;
+      pointsEl.textContent = points;
+      sweetText.textContent = '';
+
+      shuffle([...icons, ...icons]).forEach(icon => {
+        const c = document.createElement('div');
+        c.className = 'heart';
+        c.textContent = '❔';
+        c.dataset.icon = icon;
+        c.onclick = () => flip(c);
+        grid.appendChild(c);
+      });
+    }
+
+    function flip(card) {
+      if (lock || card === first || card.classList.contains('done')) return;
+
+      card.textContent = card.dataset.icon;
+
+      if (!first) {
+        first = card;
+        return;
+      }
+
+      second = card;
+      lock = true;
+
+      if (first.dataset.icon === second.dataset.icon) {
+        first.classList.add('done');
+        second.classList.add('done');
+        points += 10;
+        matched++;
+        pointsEl.textContent = points;
+
+        if (matched === icons.length) {
+          sweetText.textContent =
+            'Baap re, you matched everything, congrats — you are so nonchalantly smart 💖';
+        }
+
+        first = second = null;
+        lock = false;
+      } else {
+        setTimeout(() => {
+          first.textContent = '❔';
+          second.textContent = '❔';
+          first = second = null;
+          lock = false;
+        }, 700);
+      }
+    }
+
+    resetGame();
+
+    document.querySelectorAll('.choco').forEach(c => {
+      c.onclick = () => {
+        document.getElementById('chocoMsg').textContent = c.dataset.msg;
+      };
+    });
+const bgMusic = document.getElementById("bgMusic");
+let musicStarted = false;
+
+function startMusicOnce() {
+  if (!musicStarted) {
+    bgMusic.volume = 0.5;
+    bgMusic.play().catch(() => {});
+    musicStarted = true;
+  }
+}
+
+document.addEventListener("click", startMusicOnce);
+document.addEventListener("touchstart", startMusicOnce);
+  </script>
+</body>
+</html>
